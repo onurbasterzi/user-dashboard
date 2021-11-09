@@ -1,14 +1,27 @@
 import { useRouter } from "next/router";
-import { getUserById } from "../../ORNEK_DATA";
+// import { getUserById } from "../../ORNEK_DATA";
+import {getUserById} from "../../api/queries"
 
 function UserDetailsPage() {
   const router = useRouter();
   const userId = router.query.userId;
   console.log(userId);
-  const user = getUserById(userId);
-  console.log(user);
+  //const user = getUserById(userId);
 
-  if (!user) {
+  const { loading, error, data } = getUserById(userId)
+
+  if (loading) {
+    return <p>loading</p>;
+  }
+
+  if (error) {
+    return <p>error</p>;
+  }
+
+  const user=data['users_by_pk']
+  console.log(data['users_by_pk']);
+
+  if (!data) {
     return <p>No user found!</p>;
   }
 

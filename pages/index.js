@@ -5,10 +5,10 @@ import { getAllUsers } from "../api/queries";
 
 export default function Home() {
 
-
+  const users = [];
   const { loading, error, data } = getAllUsers()
 
-  if (loading) {
+  if (loading ) {
     return <p>loading</p>;
   }
 
@@ -16,7 +16,6 @@ export default function Home() {
     return <p>error</p>;
   }
 
-  const users = [];
 
   for (const key in data["users"]) {
     users.push({
@@ -28,7 +27,9 @@ export default function Home() {
   return (
     <div className="container">
       <h1>USER LIST</h1>
-      <UserList items={users}></UserList>
+      <UserList items={users}>
+      </UserList>
+
     </div>
   );
 }
