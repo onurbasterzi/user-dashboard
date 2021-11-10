@@ -1,12 +1,10 @@
 import { useRouter } from "next/router";
-// import { getUserById } from "../../ORNEK_DATA";
 import {getUserById} from "../../api/queries"
 
 function UserDetailsPage() {
   const router = useRouter();
   const userId = router.query.userId;
   console.log(userId);
-  //const user = getUserById(userId);
 
   const { loading, error, data } = getUserById(userId)
 
@@ -27,7 +25,8 @@ function UserDetailsPage() {
 
   return (
     <div>
-      <h1>{user.name +' '+ user.lastname}</h1>
+      <h1>User Details ({user.name +' '+ user.lastname})</h1>
+      {/* <h1>{user.name +' '+ user.lastname}</h1> */}
     </div>
   );
 }

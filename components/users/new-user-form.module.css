@@ -1,0 +1,29 @@
+.input {
+    width:100%;
+    height:30px;
+    border-radius: 10px;
+    border:none;
+    margin:5px;
+    font-family: "Nunito";
+    font-size: 20px;
+    padding: 5px 5%;
+}
+
+.form{
+    width:30%;
+    margin:auto
+}
+
+
+
+
+/* default
+---------------------------- */
+
+
+@media (max-width: 768px) {
+    .form{
+        width:100%;
+        margin:auto
+    } 
+}

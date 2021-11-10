@@ -81,7 +81,20 @@ export function addNewUser(callback) {
       callback();
     }
     else{
-      console.log('islem başarılı');
+      console.log('ekleme başarılı');
+    }
+    
+  }})
+ 
+}
+
+export function deleteUser(callback) {
+  return useMutation(DELETE_USER,{onCompleted(data){
+    if(callback){
+      callback();
+    }
+    else{
+      console.log('silme başarılı');
     }
     
   }})

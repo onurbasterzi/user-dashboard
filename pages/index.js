@@ -1,5 +1,5 @@
 import UserList from "../components/users/user-list";
-import { getAllUsers } from "../api/queries";
+import { getAllUsers,deleteUser } from "../api/queries";
 
 
 
@@ -7,6 +7,17 @@ export default function Home() {
 
   const users = [];
   const { loading, error, data } = getAllUsers()
+  const [deleteUserHandler]= deleteUser(onSuccess)
+
+  function onSuccess() {
+    window.location.reload()
+  }
+
+function onDelete(id){
+  deleteUserHandler({variables:{id}})
+}
+
+  //const onDelete=(id)=>deleteUserHandler({variables:{id}})
 
   if (loading ) {
     return <p>loading</p>;
@@ -26,8 +37,8 @@ export default function Home() {
   
   return (
     <div className="container">
-      <h1>USER LIST</h1>
-      <UserList items={users}>
+      <h1>User List</h1>
+      <UserList onDelete={onDelete} items={users}>
       </UserList>
 
     </div>

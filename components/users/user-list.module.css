@@ -1,0 +1,38 @@
+.table_responsive{
+    overflow-x:auto;
+}
+
+.users {
+    font-family:"Nunito";
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .users td, .users th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 20px;
+  }
+  
+  .users tr:nth-child(even){background-color: #666;}
+  
+  .users tr:hover {background-color: #333;}
+  
+  .users th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+
+  @media (max-width: 768px) {
+
+    .users td, .users th {
+    
+        font-size: 12px;
+      }
+  }
+
+  

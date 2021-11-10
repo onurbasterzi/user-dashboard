@@ -6,10 +6,11 @@ function NewUserPage() {
  
  
   const [addUser, { loading, error  }] =   addNewUser(onSuccess)
+  
 
 
   function onSuccess(){
-        console.log('aaa');
+        window.location.reload()
   }
 
   function addUserHandler(props) {

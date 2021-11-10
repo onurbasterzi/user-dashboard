@@ -1,4 +1,5 @@
 import {useRef} from 'react'
+import classes from './new-user-form.module.css'
 
 function NewUserForm(props){
 
@@ -26,26 +27,26 @@ function NewUserForm(props){
 
 
     return <div className='container'>
+       
+        <form onSubmit={newUserSubmitHandler} className={classes.form}>
         <h1>Add New User</h1>
-        <form onSubmit={newUserSubmitHandler}>
-           
             <div>
-                <input type="text" placeholder='name' ref={nameRef}/>
+                <input type="text" required className={classes.input} placeholder='name' ref={nameRef}/>
             </div>
             <div>
-                <input type="text" placeholder='lastname' ref={lastNameRef}/>
+                <input type="text" className={classes.input} placeholder='lastname' ref={lastNameRef}/>
             </div>
             <div>
-                <input type="text" placeholder='phone' ref={phoneRef}/>
+                <input  className={classes.input} placeholder='phone' ref={phoneRef}/>
             </div>
             <div>
-                <input type="text" placeholder='birth day' ref={birthDayRef}/>
+                <input type="date" className={classes.input} placeholder='birth day' ref={birthDayRef}/>
             </div>
             <div>
-                <input type="text" placeholder='email' ref={emailRef}/>
+                <input type="email" className={classes.input} required placeholder='email' ref={emailRef}/>
             </div>
             <div>
-                <button> Add User</button>
+                <button className='btn'> Add User</button>
             </div>
         </form>
     </div>
