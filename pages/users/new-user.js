@@ -10,7 +10,8 @@ function NewUserPage() {
 
 
   function onSuccess(){
-        window.location.reload()
+        //window.location.reload()
+        console.log('ok');
   }
 
   function addUserHandler(props) {
@@ -39,8 +40,8 @@ function NewUserPage() {
   }
 
   return (
-    <section>
-      <NewUserForm onAddUser={addUserHandler} />
+    <section className='userdetails'>
+      <NewUserForm  onAddUser={addUserHandler} />
     </section>
   );
 }

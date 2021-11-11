@@ -1,17 +1,26 @@
 .input {
     width:100%;
     height:30px;
-    border-radius: 10px;
+    background-color: transparent;
     border:none;
-    margin:5px;
+    border-bottom:1px solid #333;
+    outline: none;
+    margin:5px 0;
     font-family: "Nunito";
     font-size: 20px;
-    padding: 5px 5%;
+    padding: 5px 0;
+    padding-left: 10px;
+}
+
+.input:focus{
+    
+    outline: none;
+    border-bottom:1px solid #2FC27D;
 }
 
 .form{
-    width:30%;
-    margin:auto
+    margin:auto;
+    
 }
 
 
@@ -24,6 +33,6 @@
 @media (max-width: 768px) {
     .form{
         width:100%;
-        margin:auto
+        
     } 
 }

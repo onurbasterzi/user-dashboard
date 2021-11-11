@@ -1,9 +1,10 @@
+import {useState} from 'react'
 import UserItem from "./user-item";
 import classes from "./user-list.module.css"
 
 function UserList(props) {
   const { items } = props;
-  console.log(props.onDelete);
+  // console.log(props.onDelete);
 
   return (
     <div className={classes.table_responsive}>

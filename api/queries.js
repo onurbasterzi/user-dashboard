@@ -17,6 +17,19 @@ mutation deleteUser($id: Int!) {
 }
 `
 
+const UPDATE_USER=gql`
+mutation updateUser($id:Int!, $phone: String!, $name: String!, $lastname: String!, $email: String!, $date_of_birth: date!) {
+  update_users_by_pk(pk_columns: {id: $id}, _set: {date_of_birth: $date_of_birth, email: $email, lastname: $lastname, name: $name, phone: $phone}) {
+    date_of_birth
+    email
+    lastname
+    name
+    phone
+    id
+  }
+}
+`
+
  const ADD_USER = gql`
   mutation addUser(
     $date_of_birth: date!
@@ -40,6 +53,9 @@ mutation deleteUser($id: Int!) {
     }
   }
 `;
+
+
+
 
 const GET_USERS = gql`
   {
@@ -67,8 +83,12 @@ const GET_USER_BY_ID = gql`
   }
 `;
 
-export function getAllUsers() {
-  return useQuery(GET_USERS);
+export function getAllUsers(callback) {
+  return useQuery(GET_USERS,{onCompleted(){
+    if(callback){
+      callback();
+    }
+  }});
 }
 
 export function getUserById(id) {
@@ -91,12 +111,24 @@ export function addNewUser(callback) {
 export function deleteUser(callback) {
   return useMutation(DELETE_USER,{onCompleted(data){
     if(callback){
-      callback();
+      callback(data);
     }
     else{
       console.log('silme başarılı');
     }
     
+  }})
+ 
+}
+
+export function updateUser(callback) {
+  return useMutation(UPDATE_USER,{onCompleted(data){
+    if(callback){
+      callback();
+    }
+    else{
+      console.log('update başarılı');
+    }
   }})
  
 }

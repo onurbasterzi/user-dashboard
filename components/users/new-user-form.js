@@ -26,27 +26,27 @@ function NewUserForm(props){
     }
 
 
-    return <div className='container'>
-       
+    return <div className='card'>
+
         <form onSubmit={newUserSubmitHandler} className={classes.form}>
         <h1>Add New User</h1>
             <div>
-                <input type="text" required className={classes.input} placeholder='name' ref={nameRef}/>
+                <input type="text" required className={classes.input} placeholder='Name' ref={nameRef}/>
             </div>
             <div>
-                <input type="text" className={classes.input} placeholder='lastname' ref={lastNameRef}/>
+                <input type="text" className={classes.input} placeholder='Lastname' ref={lastNameRef}/>
             </div>
             <div>
-                <input  className={classes.input} placeholder='phone' ref={phoneRef}/>
+                <input  className={classes.input} placeholder='Phone Number' ref={phoneRef}/>
             </div>
             <div>
-                <input type="date" className={classes.input} placeholder='birth day' ref={birthDayRef}/>
+                <input type="date" className={classes.input} placeholder='Date of Birth' ref={birthDayRef}/>
             </div>
             <div>
-                <input type="email" className={classes.input} required placeholder='email' ref={emailRef}/>
+                <input type="email" className={classes.input} required placeholder='Email Address' ref={emailRef}/>
             </div>
             <div>
-                <button className='btn'> Add User</button>
+                <button className='btn btn-full'> Add User</button>
             </div>
         </form>
     </div>

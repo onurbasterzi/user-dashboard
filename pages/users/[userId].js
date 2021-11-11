@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import {getUserById} from "../../api/queries"
+import UserDetails from "../../components/users/user-details";
 
 function UserDetailsPage() {
   const router = useRouter();
@@ -24,9 +25,9 @@ function UserDetailsPage() {
   }
 
   return (
-    <div>
-      <h1>User Details ({user.name +' '+ user.lastname})</h1>
-      {/* <h1>{user.name +' '+ user.lastname}</h1> */}
+    <div className='userdetails'>
+      <h2>User Details ({user.id})</h2>
+      <UserDetails details={user}/>
     </div>
   );
 }

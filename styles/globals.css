@@ -4,21 +4,39 @@ body {
   background: #333;
   color: #fff;
   font-family: "Nunito";
+ 
 }
 a {
   color: #fff;
   text-decoration: none;
 }
 
-.container {
-  padding: 0 2rem;
+h2{
+  text-align: center;
 }
 
-
-.content {
-  max-width: 960px;
-  margin: 0 auto;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+li{
+  border-bottom: 2px solid #333;
+  padding: 20px 0;
+}
+
+.icon-font{
+  font-size: 30px;
+  margin-right: 10px;
+
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
 nav {
   margin: 10px auto 20px;
   padding: 10px 0 40px 0; 
@@ -79,9 +97,8 @@ footer {
 
 .btn {
   font-size: 20px;
-  padding: 6px 12px;
-  margin:5px;
-  margin-bottom: 0;
+  padding: 6px 6px;
+  margin:10px 0;
   border-radius: 10px;
   display: inline-block;
   text-decoration: none;
@@ -119,23 +136,51 @@ footer {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
+.btn-small{
+  font-size: 12px;
+  padding: 3px 6px;
+  margin: 0 2px;
+}
+
+.btn-full{
+  width: 100%;
+  margin:10px 0;
+  padding: 6px 0;
+  
+}
+
 
 .btn-delete{
   background-color: #ff4242;
-  font-size: 12px;
-  padding: 3px 6px;
+  
 }
 
 .btn-detail{
   background-color: #a442ff;
-  font-size: 12px;
-  padding: 3px 6px;
+  
 }
 
 .btn-update{
   background-color: #2FC27D;
-  font-size: 12px;
-  padding: 3px 6px;
+  
+}
+
+.userdetails{
+  width:30%;
+  margin:auto
+}
+
+.card {
+  margin: 1rem;
+  padding: 1.5rem;
+  padding-left: 10px;
+  text-align: left;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  background-color: #eafff5;
 }
 
 
@@ -165,4 +210,11 @@ footer {
   nav .links a{
     margin-top: 20px;
   }
+
+  .userdetails{
+    width:100%;
+  
+    
+}
+
 }
