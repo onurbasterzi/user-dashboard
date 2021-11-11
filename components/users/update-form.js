@@ -1,53 +1,88 @@
-import {useRef} from 'react'
+import { useRef } from "react";
+import classes from "./new-user-form.module.css";
 
-function UpdateForm(){
+function UpdateForm(props) {
 
-    const nameRef =useRef();
-    const lastNameRef =useRef();
-    const phoneRef =useRef();
-    const birthDayRef =useRef();
-    const emailRef =useRef();
+ const details=props.details
 
+  const nameRef = useRef();
+  const lastNameRef = useRef();
+  const phoneRef = useRef();
+  const birthDayRef = useRef();
+  const emailRef = useRef();
 
-    function updateUserSubmitHandler(event){
-        event.preventDefault();
+  function updateUserSubmitHandler(event) {
+    event.preventDefault();
+
+    const userData = {
+      name: nameRef.current.value,
+      lastname: lastNameRef.current.value,
+      phone: phoneRef.current.value,
+      date_of_birth: birthDayRef.current.value,
+      email: emailRef.current.value,
+    };
+
+    props.onUpdateUser(userData);
+  }
+
+  return (
+    <div className="card">
+         <h1>Update User</h1>
+      <form onSubmit={updateUserSubmitHandler} className={classes.form}>
        
-        const userData={
-            name:nameRef.current.value,
-            lastname:lastNameRef.current.value,
-            phone:phoneRef.current.value,
-            date_of_birth:birthDayRef.current.value,
-            email:emailRef.current.value
-        }
-
-        props.onAddUser(userData)
-
-    }
-
-    return <div className='card'>
-    <form onSubmit={updateUserSubmitHandler} className={classes.form}>
-    <h1>Add New User</h1>
         <div>
-            <input type="text" required className={classes.input} placeholder='Name' ref={nameRef}/>
+          <input
+            type="text"
+            required
+            className={classes.input}
+            placeholder="Name"
+            ref={nameRef}
+            defaultValue={details.name}
+          />
         </div>
         <div>
-            <input type="text" className={classes.input} placeholder='Lastname' ref={lastNameRef}/>
+          <input
+            type="text"
+            className={classes.input}
+            placeholder="Lastname"
+            ref={lastNameRef}
+            defaultValue={details.lastname}
+          />
         </div>
         <div>
-            <input  className={classes.input} placeholder='Phone Number' ref={phoneRef}/>
+          <input
+            type="text"
+            className={classes.input}
+            placeholder="Phone Number"
+            ref={phoneRef}
+            defaultValue={details.phone}
+          />
         </div>
         <div>
-            <input type="date" className={classes.input} placeholder='Date of Birth' ref={birthDayRef}/>
+          <input
+            type="date"
+            className={classes.input}
+            placeholder="Date of Birth"
+            ref={birthDayRef}
+            defaultValue={details.date_of_birth}
+          />
         </div>
         <div>
-            <input type="email" className={classes.input} required placeholder='Email Address' ref={emailRef}/>
+          <input
+            type="email"
+            className={classes.input}
+            required
+            placeholder="Email Address"
+            ref={emailRef}
+            defaultValue={details.email}
+          />
         </div>
         <div>
-            <button className='btn btn-full'> Add User</button>
+          <button className="btn btn-full"> Update User</button>
         </div>
-    </form>
-</div>
+      </form>
+    </div>
+  );
 }
-
 
 export default UpdateForm;

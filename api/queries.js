@@ -8,29 +8,44 @@ const GET_LAST_ID = gql`
   }
 `;
 
-
-const DELETE_USER=gql`
-mutation deleteUser($id: Int!) {
-  delete_users_by_pk(id: $id) {
-    id
+const DELETE_USER = gql`
+  mutation deleteUser($id: Int!) {
+    delete_users_by_pk(id: $id) {
+      id
+    }
   }
-}
-`
+`;
 
-const UPDATE_USER=gql`
-mutation updateUser($id:Int!, $phone: String!, $name: String!, $lastname: String!, $email: String!, $date_of_birth: date!) {
-  update_users_by_pk(pk_columns: {id: $id}, _set: {date_of_birth: $date_of_birth, email: $email, lastname: $lastname, name: $name, phone: $phone}) {
-    date_of_birth
-    email
-    lastname
-    name
-    phone
-    id
+const UPDATE_USER = gql`
+  mutation updateUser(
+    $id: Int!
+    $phone: String!
+    $name: String!
+    $lastname: String!
+    $email: String!
+    $date_of_birth: date!
+  ) {
+    update_users_by_pk(
+      pk_columns: { id: $id }
+      _set: {
+        date_of_birth: $date_of_birth
+        email: $email
+        lastname: $lastname
+        name: $name
+        phone: $phone
+      }
+    ) {
+      date_of_birth
+      email
+      lastname
+      name
+      phone
+      id
+    }
   }
-}
-`
+`;
 
- const ADD_USER = gql`
+const ADD_USER = gql`
   mutation addUser(
     $date_of_birth: date!
     $email: String!
@@ -49,23 +64,38 @@ mutation updateUser($id:Int!, $phone: String!, $name: String!, $lastname: String
         phone: $phone
       }
     ) {
+      date_of_birth
+      email
       id
+      lastname
+      name
+      phone
     }
   }
 `;
 
-
-
-
-const GET_USERS = gql`
-  {
+export const GET_USERS = gql`
+  query myUsers {
     users {
       id
       name
       lastname
       phone
-      email
       date_of_birth
+      email
+    }
+  }
+`;
+
+export const query = gql`
+  query myUsers {
+    users {
+      id
+      name
+      lastname
+      phone
+      date_of_birth
+      email
     }
   }
 `;
@@ -84,11 +114,13 @@ const GET_USER_BY_ID = gql`
 `;
 
 export function getAllUsers(callback) {
-  return useQuery(GET_USERS,{onCompleted(){
-    if(callback){
-      callback();
-    }
-  }});
+  return useQuery(GET_USERS, {
+    onCompleted() {
+      if (callback) {
+        callback();
+      }
+    },
+  });
 }
 
 export function getUserById(id) {
@@ -96,41 +128,39 @@ export function getUserById(id) {
 }
 
 export function addNewUser(callback) {
-  return useMutation(ADD_USER,{onCompleted(data){
-    if(callback){
-      callback();
-    }
-    else{
-      console.log('ekleme başarılı');
-    }
-    
-  }})
- 
+  return useMutation(ADD_USER, {
+    onCompleted(data) {
+      if (callback) {
+        callback(data);
+      } else {
+        console.log("ekleme başarılı");
+      }
+    },
+  });
 }
 
 export function deleteUser(callback) {
-  return useMutation(DELETE_USER,{onCompleted(data){
-    if(callback){
-      callback(data);
-    }
-    else{
-      console.log('silme başarılı');
-    }
-    
-  }})
- 
+  return useMutation(DELETE_USER, {
+    onCompleted(data) {
+      if (callback) {
+        callback(data);
+      } else {
+        console.log("silme başarılı");
+      }
+    },
+  });
 }
 
-export function updateUser(callback) {
-  return useMutation(UPDATE_USER,{onCompleted(data){
-    if(callback){
-      callback();
-    }
-    else{
-      console.log('update başarılı');
-    }
-  }})
- 
+export function updateUserById(callback) {
+  return useMutation(UPDATE_USER, {
+    onCompleted(data) {
+      if (callback) {
+        callback();
+      } else {
+        console.log("update başarılı");
+      }
+    },
+  });
 }
 
 // export function AddNewUser() {

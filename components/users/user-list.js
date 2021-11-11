@@ -1,10 +1,11 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import UserItem from "./user-item";
 import classes from "./user-list.module.css"
 
 function UserList(props) {
-  const { items } = props;
-  // console.log(props.onDelete);
+  
+   const items=props.items
+   console.log(items);
 
   return (
     <div className={classes.table_responsive}>
@@ -20,11 +21,7 @@ function UserList(props) {
         <th>#ACTIONS</th>
       </tr>
       </thead>
-      <tbody>
-      {items.map((user) => (
-        <UserItem onDelete={props.onDelete} key={user.id} id={user.id} name={user.name} lastname={user.lastname} phone={user.phone}  email={user.email} date_of_birth={user.date_of_birth}></UserItem>
-      ))}
-      </tbody>
+      <tbody>{items.map((user) => (<UserItem onDelete={props.onDelete} key={user.id} id={user.id} name={user.name} lastname={user.lastname} phone={user.phone}  email={user.email} date_of_birth={user.date_of_birth}></UserItem>))}</tbody>
     </table>
     </div>
   );

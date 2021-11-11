@@ -1,52 +1,53 @@
 
-import { useState } from "react";
 import UserList from "../components/users/user-list";
-import { getAllUsers, deleteUser } from "../api/queries";
+import { getAllUsers, deleteUser, GET_USERS } from "../api/queries";
+import { withApollo } from "@apollo/react-hoc";
+import Loading from "../components/ui/loading";
 
-export default function Home() {
-  
-  let { loading, error, data } = getAllUsers(onGetSuccess);
+
+
+function Home({ client }) {
+  const { loading, error, data } = getAllUsers();
   const [deleteUserHandler] = deleteUser(onDeleteSuccess);
-  const [users,setUsers]=useState([])
- 
 
-  function onGetSuccess(){
-      setUsers([...data['users']])
+  if(loading) {
+    return <Loading/>
   }
 
-
+  if (error) {
+    console.log("error");
+    return <p>error</p>;
+  }
+ 
   function onDeleteSuccess(rdata) {
-    
     let newdata = [];
-    for (let i = 0; i < users.length; i++) {
-      const element = users[i];
+    for (let i = 0; i < data.users.length; i++) {
+      const element = data.users[i];
       if (element.id != rdata["delete_users_by_pk"].id) {
-        console.log(element);
         newdata.push(element);
       }
     }
-    // const newdata=users.splice(users.findIndex(function(i){return i.id === rdata["delete_users_by_pk"].id}), 1);
-    setUsers(newdata)
+
+    client.writeQuery({
+      query:GET_USERS,
+      data: {
+        users: newdata,
+      },
+    });
+   
   }
 
   function onDelete(id) {
     deleteUserHandler({ variables: { id } });
   }
 
-  if (loading) {
-    return <p>loading</p>;
-  }
-
-  if (error) {
-    setReload(true)
-    return <p>error</p>;
-  }
- 
 
   return (
     <div>
       <h1>User List</h1>
-      <UserList onDelete={onDelete}  items={users}></UserList>
+      <UserList onDelete={onDelete} items={data.users}></UserList>
     </div>
   );
 }
+
+export default withApollo(Home);
