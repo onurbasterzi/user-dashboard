@@ -12,9 +12,25 @@ export function confirmDialog(callback,title,message) {
         },
         {
           label: 'No',
-          onClick: () => console.log('NO')
+          //onClick: () => console.log('NO')
         }
       ],
-      overlayClassName: "no-overlay"
+      overlayClassName: "no-overlay",
+      customUI: ({ onClose }) => {
+        return (
+          <div className='custom-ui'>
+            <h1>{title}</h1>
+            <p>{message}</p>
+            <button className='btn btn-grey' onClick={onClose}>No</button>
+            <button className='btn btn-update' onClick={() => {
+                callback()
+                onClose();
+              }}
+            >
+              Yes, Delete user!
+            </button>
+          </div>
+        );
+      }
     });
   }

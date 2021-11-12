@@ -3,6 +3,7 @@ import { addNewUser } from "../../api/queries";
 import { withApollo } from "@apollo/react-hoc";
 import { GET_USERS } from "../../api/queries";
 import Loading from "../../components/ui/loading";
+import {alertDialog} from '../../components/ui/alert'
 function NewUserPage({ client }) {
   const [addUser, { loading, error }] = addNewUser(onSuccess);
 
@@ -17,7 +18,7 @@ function NewUserPage({ client }) {
 
   function onSuccess(retrun_data) {
     addToCache(retrun_data.insert_users_one);
-    console.log(retrun_data.insert_users_one);
+    alertDialog('User added successfully')
   }
 
   function addToCache(addedRow) {
@@ -38,7 +39,7 @@ function NewUserPage({ client }) {
       },
     });
 
-    console.log(data.users);
+    //console.log(data.users);
   }
 
   function addUserHandler(props) {

@@ -3,7 +3,7 @@ import MobileItem from "./mobile-item";
 
 function MobileList(props) {
   const items = props.items;
-  console.log(items);
+  //console.log(items);
 
   return (
     <ul>

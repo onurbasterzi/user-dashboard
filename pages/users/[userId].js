@@ -6,7 +6,7 @@ import { withApollo } from "@apollo/react-hoc";
 function UserDetailsPage({client}) {
   const router = useRouter();
   const userId = router.query.userId;
-  console.log(userId);
+  //console.log(userId);
 
 
   function getUserFromCache() {
@@ -16,7 +16,7 @@ function UserDetailsPage({client}) {
   }
 
   const user=getUserFromCache()
-  console.log(user);
+  //console.log(user);
 
 
   return (

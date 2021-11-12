@@ -10,6 +10,13 @@ import {
 function UserDetails(props) {
   const details = props.details;
 
+  const formatedDate = new Date(details.date_of_birth).toLocaleDateString('tr-TR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+
   return (
     <div className="card">
       <ul>
@@ -23,7 +30,7 @@ function UserDetails(props) {
         </li>
         <li>
           <FontAwesomeIcon className="icon-font" icon={faBirthdayCake} />{" "}
-          {details.date_of_birth}
+          {formatedDate}
         </li>
         <li>
           <FontAwesomeIcon className="icon-font" icon={faMobileAlt} />{" "}

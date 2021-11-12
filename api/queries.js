@@ -127,7 +127,7 @@ export function addNewUser(callback) {
       if (callback) {
         callback(data);
       } else {
-        console.log("ekleme başarılı");
+        //console.log("ekleme başarılı");
       }
     },
   });
@@ -139,7 +139,7 @@ export function deleteUser(callback) {
       if (callback) {
         callback(data);
       } else {
-        console.log("silme başarılı");
+        //console.log("silme başarılı");
       }
     },
   });
@@ -151,7 +151,7 @@ export function updateUserById(callback) {
       if (callback) {
         callback();
       } else {
-        console.log("update başarılı");
+        //console.log("update başarılı");
       }
     },
   });

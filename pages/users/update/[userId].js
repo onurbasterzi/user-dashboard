@@ -3,11 +3,12 @@ import UpdateForm from "../../../components/users/update-form";
 import {  updateUserById,GET_USERS } from "../../../api/queries";
 import { withApollo } from "@apollo/react-hoc";
 import Loading from "../../../components/ui/loading";
+import {alertDialog} from '../../../components/ui/alert'
 
 function UpdateUserPage({client}) {
   const router = useRouter();
   const userId = router.query.userId;
-  console.log(userId);
+  //console.log(userId);
 
   const [updateUser,{loading}] = updateUserById(onSuccess);
 
@@ -16,7 +17,7 @@ function UpdateUserPage({client}) {
   }
   
   function onSuccess() {
-    console.log("update success");
+    alertDialog('User updated successfully')
   }
 
   function getUserFromCache() {
@@ -27,7 +28,7 @@ function UpdateUserPage({client}) {
 
 
   const user = getUserFromCache()
-  console.log(user);
+  //console.log(user);
 
   function updateUserHandler(props) {
     updateUser({

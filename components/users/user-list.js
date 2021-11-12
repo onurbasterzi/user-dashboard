@@ -4,7 +4,7 @@ import classes from "./styles/user-list.module.css"
 function UserList(props) {
   
    const items=props.items
-   console.log(items);
+   //console.log(items);
 
   return (
     <div className={classes.table_responsive}>

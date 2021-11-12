@@ -163,7 +163,6 @@ nav .links a{
 
 .btn-delete{
   background-color: #ff4242;
-  
 }
 
 .btn-detail{
@@ -174,6 +173,32 @@ nav .links a{
 .btn-update{
   background-color: #2FC27D;
   
+}
+
+.btn-grey{
+  background-color:#ff4242;
+  margin-right: 10px;
+  
+}
+
+.btn-white{
+  background-color: #FFF;
+  color:#333
+  
+}
+
+.custom-ui{
+  background-color: #494949;
+  padding: 20px;
+  
+}
+.react-confirm-alert{
+  width:50%
+}
+
+.custom-ui-alert{
+  background-color: #2FC27D;
+  padding: 20px;
 }
 
 .userdetails{
@@ -195,6 +220,9 @@ nav .links a{
 }
 
 
+
+
+
 @media (max-width: 768px) {
 
   nav {
@@ -207,6 +235,8 @@ nav .links a{
     text-align: center;
     margin-bottom: 10px;
   }
+
+
 
 
 
@@ -226,6 +256,9 @@ nav .links a{
     width:100%;
   
     
+}
+.react-confirm-alert{
+  width:90%
 }
 
 }
