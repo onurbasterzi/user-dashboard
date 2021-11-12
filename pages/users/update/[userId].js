@@ -45,6 +45,7 @@ function UpdateUserPage({client}) {
 
   return (
     <section className="userdetails">
+      <h1>Update User</h1>
       <UpdateForm onUpdateUser={updateUserHandler} details={user}></UpdateForm>
     </section>
   );

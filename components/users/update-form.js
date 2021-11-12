@@ -27,7 +27,7 @@ function UpdateForm(props) {
 
   return (
     <div className="card">
-         <h1>Update User</h1>
+         
       <form onSubmit={updateUserSubmitHandler} className={classes.form}>
        
         <div>
