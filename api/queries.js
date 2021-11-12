@@ -12,6 +12,11 @@ const DELETE_USER = gql`
   mutation deleteUser($id: Int!) {
     delete_users_by_pk(id: $id) {
       id
+      name
+      lastname
+      phone
+      date_of_birth
+      email
     }
   }
 `;
@@ -87,20 +92,9 @@ export const GET_USERS = gql`
   }
 `;
 
-export const query = gql`
-  query myUsers {
-    users {
-      id
-      name
-      lastname
-      phone
-      date_of_birth
-      email
-    }
-  }
-`;
 
-const GET_USER_BY_ID = gql`
+
+export const GET_USER_BY_ID = gql`
   query user($id: Int!) {
     users_by_pk(id: $id) {
       date_of_birth

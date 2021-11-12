@@ -4,7 +4,10 @@ import { ApolloProvider } from "@apollo/client";
 import { Client } from "../api/credentials";
 
 function MyApp({ Component, pageProps }) {
-  console.log(pageProps);
+  
+    
+
+
   return (
     <ApolloProvider client={Client}>
       <Layout>

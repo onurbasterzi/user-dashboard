@@ -39,6 +39,7 @@ function NewUserForm(props) {
           <div>
             <input
               type="text"
+              required
               className={classes.input}
               placeholder="Lastname"
               ref={lastNameRef}
@@ -46,6 +47,8 @@ function NewUserForm(props) {
           </div>
           <div>
             <input
+              type="text"
+              required
               className={classes.input}
               placeholder="Phone Number"
               ref={phoneRef}
@@ -54,6 +57,7 @@ function NewUserForm(props) {
           <div>
             <input
               type="date"
+              required
               className={classes.input}
               placeholder="Date of Birth"
               ref={birthDayRef}

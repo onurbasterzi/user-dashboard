@@ -1,11 +1,27 @@
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrashAlt,
+  faUserEdit,
+  faEye
+  
+} from "@fortawesome/free-solid-svg-icons";
+import {confirmDialog} from '../ui/confirmDialog'
 import { deleteUser } from "../../api/queries";
+
+
 function UserItem(props) {
   const { id, name, lastname, phone, email, date_of_birth } = props;
+
 
   function DeleteUser() {
     props.onDelete(id);
   }
+
+  function confirm(){
+    confirmDialog(DeleteUser)
+  }
+  
 
   return (
     <tr>
@@ -17,13 +33,14 @@ function UserItem(props) {
       <td>{date_of_birth}</td>
       <td>
         <Link href={"/users/" + id}>
-          <span className="btn btn-detail btn-small">Details</span>
+         
+          <FontAwesomeIcon className="mini-icon-font btn btn-detail btn-small" title='Details' icon={faEye} />
         </Link>
         <Link href={"/users/update/" + id}>
-          <span className="btn btn-update btn-small">Update</span>
+        <FontAwesomeIcon className="mini-icon-font btn btn-update btn-small" title='Edit' icon={faUserEdit} />
         </Link>
-        <button className="btn btn-delete btn-small" onClick={DeleteUser}>
-          Delete
+        <button className="btn btn-delete btn-small" title='Delete' onClick={confirm}>
+        <FontAwesomeIcon className="mini-icon-font" icon={faTrashAlt} />
         </button>
       </td>
     </tr>

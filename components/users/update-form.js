@@ -52,6 +52,7 @@ function UpdateForm(props) {
         <div>
           <input
             type="text"
+            required
             className={classes.input}
             placeholder="Phone Number"
             ref={phoneRef}
@@ -61,6 +62,7 @@ function UpdateForm(props) {
         <div>
           <input
             type="date"
+            required
             className={classes.input}
             placeholder="Date of Birth"
             ref={birthDayRef}

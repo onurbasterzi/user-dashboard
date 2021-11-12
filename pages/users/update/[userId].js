@@ -1,32 +1,33 @@
 import { useRouter } from "next/router";
 import UpdateForm from "../../../components/users/update-form";
-import { getUserById, updateUserById } from "../../../api/queries";
-function UpdateUserPage() {
+import {  updateUserById,GET_USERS } from "../../../api/queries";
+import { withApollo } from "@apollo/react-hoc";
+import Loading from "../../../components/ui/loading";
+
+function UpdateUserPage({client}) {
   const router = useRouter();
   const userId = router.query.userId;
   console.log(userId);
 
-  const { loading, error, data } = getUserById(userId);
-  const [updateUser] = updateUserById(onSuccess);
+  const [updateUser,{loading}] = updateUserById(onSuccess);
 
+  if(loading){
+    return <Loading/>
+  }
+  
   function onSuccess() {
     console.log("update success");
   }
 
-  if (loading) {
-    return <p>loading</p>;
+  function getUserFromCache() {
+    const data = client.readQuery({ query: GET_USERS });
+    let cached_data = data.users.find(item => item.id === parseInt(userId));
+    return cached_data
   }
 
-  if (error) {
-    return <p>error</p>;
-  }
-  
-  if (!data) {
-    return <p>No user found!</p>;
-  }
 
-  const user = data["users_by_pk"];
-  console.log(data["users_by_pk"]);
+  const user = getUserFromCache()
+  console.log(user);
 
   function updateUserHandler(props) {
     updateUser({
@@ -48,4 +49,4 @@ function UpdateUserPage() {
   );
 }
 
-export default UpdateUserPage;
+export default withApollo(UpdateUserPage);

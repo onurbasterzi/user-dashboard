@@ -1,5 +1,5 @@
-
 import UserList from "../components/users/user-list";
+import MobileList from '../components/users/mobile-list'
 import { getAllUsers, deleteUser, GET_USERS } from "../api/queries";
 import { withApollo } from "@apollo/react-hoc";
 import Loading from "../components/ui/loading";
@@ -7,29 +7,44 @@ import Loading from "../components/ui/loading";
 
 
 function Home({ client }) {
-  const { loading, error, data } = getAllUsers();
+
+  let data = client.readQuery({ query: GET_USERS });
   const [deleteUserHandler] = deleteUser(onDeleteSuccess);
-
-  if(loading) {
-    return <Loading/>
-  }
-
-  if (error) {
-    console.log("error");
-    return <p>error</p>;
-  }
  
-  function onDeleteSuccess(rdata) {
-    let newdata = [];
+
+  function isMobile() {
+    return (  window.innerWidth <= 768  );
+  }
+
+  function onDeleteSuccess(returned_data) {
+
+    // let newdata = [];
+    // for (let i = 0; i < data.users.length; i++) {
+    //   const element = data.users[i];
+    //   if (element.id != returned_data.delete_users_by_pk.id) {
+    //     newdata.push(element);
+    //   }
+    // }
+    // client.writeQuery({
+    //   query: GET_USERS,
+    //   data: {
+    //     users: newdata,
+    //   },
+    // });
+  }
+
+
+  function onDelete(id) {
+    deleteUserHandler({ variables: { id } });
+       let newdata = [];
     for (let i = 0; i < data.users.length; i++) {
       const element = data.users[i];
-      if (element.id != rdata["delete_users_by_pk"].id) {
+      if (element.id != id) {
         newdata.push(element);
       }
     }
-
     client.writeQuery({
-      query:GET_USERS,
+      query: GET_USERS,
       data: {
         users: newdata,
       },
@@ -37,15 +52,13 @@ function Home({ client }) {
    
   }
 
-  function onDelete(id) {
-    deleteUserHandler({ variables: { id } });
-  }
-
-
   return (
+
+
     <div>
       <h1>User List</h1>
-      <UserList onDelete={onDelete} items={data.users}></UserList>
+      {isMobile()?<MobileList onDelete={onDelete} items={data.users}></MobileList>:<UserList onDelete={onDelete} items={data.users}></UserList>}
+      
     </div>
   );
 }

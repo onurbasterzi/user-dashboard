@@ -1,28 +1,23 @@
 import { useRouter } from "next/router";
-import {getUserById} from "../../api/queries"
 import UserDetails from "../../components/users/user-details";
+import { GET_USERS } from "../../api/queries";
+import { withApollo } from "@apollo/react-hoc";
 
-function UserDetailsPage() {
+function UserDetailsPage({client}) {
   const router = useRouter();
   const userId = router.query.userId;
   console.log(userId);
 
-  const { loading, error, data } = getUserById(userId)
 
-  if (loading) {
-    return <p>loading</p>;
+  function getUserFromCache() {
+    const data = client.readQuery({ query: GET_USERS });
+    let cached_data = data.users.find(item => item.id === parseInt(userId));
+    return cached_data
   }
 
-  if (error) {
-    return <p>error</p>;
-  }
+  const user=getUserFromCache()
+  console.log(user);
 
-  const user=data['users_by_pk']
-  console.log(data['users_by_pk']);
-
-  if (!data) {
-    return <p>No user found!</p>;
-  }
 
   return (
     <div className='userdetails'>
@@ -32,4 +27,4 @@ function UserDetailsPage() {
   );
 }
 
-export default UserDetailsPage;
+export default withApollo(UserDetailsPage);
