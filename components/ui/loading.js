@@ -1,4 +1,4 @@
-import classes from './loading.module.css'
+import classes from './styles/loading.module.css'
 function Loading(){
     return  <div className={classes.loading}>
     <div className={classes.uil_ring_css}>

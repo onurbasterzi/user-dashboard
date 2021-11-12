@@ -5,7 +5,7 @@ import {
   faUserEdit,
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
-import classes from "./mobile-item.module.css";
+import classes from "./styles/mobile-item.module.css";
 import {confirmDialog} from '../ui/confirmDialog'
 
 function MobileItem(props) {
@@ -16,7 +16,7 @@ function MobileItem(props) {
   }
 
   function confirm() {
-      confirmDialog(DeleteUser)
+      confirmDialog(DeleteUser,'Delete confirmation', `Are you sure you want to delete ${name} ${lastname} ?`)
   }
 
   return (
@@ -24,28 +24,34 @@ function MobileItem(props) {
       <div>{name + " " + lastname}</div>
       <div>
         <Link href={"/users/" + id}>
+        <span>
           <FontAwesomeIcon
             className={`${classes.icon_font} ${classes.btn} ${classes.btn_mobile} ${classes.btn_detail}`}
            
             icon={faEye}
           />
+          </span>
         </Link>
         <Link href={"/users/update/" + id}>
+        <span>
           <FontAwesomeIcon
             className={`${classes.icon_font} ${classes.btn} ${classes.btn_mobile} ${classes.btn_update}`}
           
             icon={faUserEdit}
           />
+          </span>
         </Link>
         <button
           title="Delete"
           onClick={confirm}
           className={classes.reset_btn}
         >
+          <span>
           <FontAwesomeIcon
             className={`${classes.icon_font} ${classes.btn} ${classes.btn_mobile}  ${classes.btn_delete}`}
             icon={faTrashAlt}
           />
+          </span>
         </button>
       </div>
     </li>

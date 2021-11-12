@@ -1,10 +1,10 @@
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
-export function confirmDialog(callback) {
+export function confirmDialog(callback,title,message) {
     confirmAlert({
-      title: 'Confirm to submit',
-      message: 'Are you sure to do delete user ?',
+      title: title,
+      message: message,
       buttons: [
         {
           label: 'Yes',

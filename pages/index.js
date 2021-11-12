@@ -1,16 +1,22 @@
 import UserList from "../components/users/user-list";
 import MobileList from '../components/users/mobile-list'
-import { getAllUsers, deleteUser, GET_USERS } from "../api/queries";
+import {  deleteUser, GET_USERS } from "../api/queries";
 import { withApollo } from "@apollo/react-hoc";
 import Loading from "../components/ui/loading";
+
+
 
 
 
 function Home({ client }) {
 
   let data = client.readQuery({ query: GET_USERS });
-  const [deleteUserHandler] = deleteUser(onDeleteSuccess);
- 
+  const [deleteUserHandler,{loading}] = deleteUser(onDeleteSuccess);
+
+  if(loading){
+    return <Loading/>
+  }
+
 
   function isMobile() {
     return (  window.innerWidth <= 768  );

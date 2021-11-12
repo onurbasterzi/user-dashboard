@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import classes from "./new-user-form.module.css";
+import classes from "./styles/new-user-form.module.css";
 
 function UpdateForm(props) {
 

@@ -1,6 +1,5 @@
-import {useState,useEffect} from 'react'
 import UserItem from "./user-item";
-import classes from "./user-list.module.css"
+import classes from "./styles/user-list.module.css"
 
 function UserList(props) {
   

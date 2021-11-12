@@ -7,7 +7,6 @@ import {
   
 } from "@fortawesome/free-solid-svg-icons";
 import {confirmDialog} from '../ui/confirmDialog'
-import { deleteUser } from "../../api/queries";
 
 
 function UserItem(props) {
@@ -18,10 +17,9 @@ function UserItem(props) {
     props.onDelete(id);
   }
 
-  function confirm(){
-    confirmDialog(DeleteUser)
-  }
-  
+  function confirm() {
+    confirmDialog(DeleteUser,'Delete confirmation', `Are you sure you want to delete ${name} ${lastname} ?`)
+}
 
   return (
     <tr>
@@ -33,11 +31,14 @@ function UserItem(props) {
       <td>{date_of_birth}</td>
       <td>
         <Link href={"/users/" + id}>
-         
+        <span>
           <FontAwesomeIcon className="mini-icon-font btn btn-detail btn-small" title='Details' icon={faEye} />
+          </span>
         </Link>
         <Link href={"/users/update/" + id}>
+          <span>
         <FontAwesomeIcon className="mini-icon-font btn btn-update btn-small" title='Edit' icon={faUserEdit} />
+        </span>
         </Link>
         <button className="btn btn-delete btn-small" title='Delete' onClick={confirm}>
         <FontAwesomeIcon className="mini-icon-font" icon={faTrashAlt} />
